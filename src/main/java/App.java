@@ -1,4 +1,5 @@
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {
@@ -8,5 +9,20 @@ public class App {
         HelloWorld bean =
                 (HelloWorld) applicationContext.getBean("helloworld");
         System.out.println(bean.getMessage());
+
+        HelloWorld bean2 =
+                (HelloWorld) applicationContext.getBean("helloworld");
+        System.out.println(bean2.getMessage());
+
+        System.out.println(bean == bean2);
+
+        ApplicationContext applicationContext1 = new AnnotationConfigApplicationContext(AppConfig.class);
+        Cat bean3 = (Cat) applicationContext1.getBean("cat");
+        System.out.println(bean3.getMessage());
+
+        Cat bean4 = (Cat) applicationContext1.getBean("cat");
+        System.out.println(bean4.getMessage());
+
+        System.out.println(bean3 == bean4);
     }
 }
